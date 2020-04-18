@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "bundle-android":"react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android_app/app/src/main/assets/index.android.bundle --sourcemap-output android_app/app/src/main/assets/index.android.map --assets-dest android_app/app/src/main/res/"
+    "bundle-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output react-native-android/app/src/main/assets/index.android.bundle --assets-dest react-native-android/app/src/main/res/"
   },
   "dependencies": {
-    "react": "16.11.0",
+    "react": "^16.13.1",
     "react-native": "^0.62.2"
   },
   "devDependencies": {
