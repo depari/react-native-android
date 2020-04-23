@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/id_input_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="type any words"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="429dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="27dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="428dp"/>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
