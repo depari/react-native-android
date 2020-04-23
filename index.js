@@ -6,10 +6,10 @@ import { NativeEventEmitter, NativeModules } from 'react-native';
 class HelloWorld extends React.Component {
   render() {
     return (
-            <View style={styles.container}>
-              <Text style={styles.hello}>Hello, World!! First App Test </Text>
-            </View>
-          );
+      <View style={styles.container}>
+        <Text style={styles.hello}>Hello, World!! First App </Text>
+      </View>
+    );
   }
 }
 var styles = StyleSheet.create({
@@ -26,7 +26,7 @@ var styles = StyleSheet.create({
 
  DeviceEventEmitter.addListener('customEvent', function (e: Event) {
         // hadle the event triggered from java side
-        console.log("SSEO customEvent : " + e )
+        console.log("SSEO customEvent !!!!! : " + e )
 
 
     });

@@ -50,25 +50,33 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
                 .setJSMainModulePath("")
                 .setJSBundleFile("index.android")
                 .addPackage(new MainReactPackage())
+                .addPackage(new CustomReactPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
 
 
-        mReactInstanceManager.createReactContextInBackground();
+        //mReactInstanceManager.createReactContextInBackground();
 
 
 //        task = new BackgroundTask(m_parameter_value);
 //        task.execute()
+        //_context = mReactInstanceManager.getCurrentReactContext();
+        mReactContext = mReactInstanceManager.getCurrentReactContext();
+        //mReactContext = mReactInstanceManager.getCurrentReactContext();
+        //tirggerEvent(mReactContext);
+
         new Handler().postDelayed(new Runnable() {// 1 초 후에 실행
             @Override
             public void run() {
                 // 실행할 동작 코딩
+                Log.d(TAG, "run: !!");
 
                 //this.getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
-                //tirggerEvent(mReactContext);
+                mReactContext = mReactInstanceManager.getCurrentReactContext();
+                tirggerEvent(mReactContext);
             }
-        }, 10000);
+        }, 5000);
 
 
         //The name reactdemo should be the same as package.json and the project name in index.android.js in react-native, otherwise errors will occur.
@@ -140,6 +148,8 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
         if(_context == null)
         {
             Log.e("SSEO", "context is null : " + m_parameter_value);
+            _context = mReactInstanceManager.getCurrentReactContext();
+
             return;
         }
         _context.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
