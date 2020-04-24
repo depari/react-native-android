@@ -1,5 +1,6 @@
 package com.reactlibrary;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -8,6 +9,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 
 public class EventMediatorModuleModule extends ReactContextBaseJavaModule {
+    String TAG = "SSEO";
 
     private final ReactApplicationContext reactContext;
 
@@ -28,7 +30,9 @@ public class EventMediatorModuleModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void show(String message, int duration) {
-        Toast.makeText(getReactApplicationContext(), message, duration).show();
+    public void show(String message) {
+        Log.d(TAG, "show: Invoked!!! ");
+
+        Toast.makeText(getReactApplicationContext(), message, 1000).show();
     }
 }

@@ -96,6 +96,7 @@ class Input extends React.Component {
     submitText = text => {
             //this.setState({ input_text: text });
             console.log("submitText:" +text );
+            EventMediatorModule.show(text);
         };
 
 
@@ -135,7 +136,7 @@ class InputForm extends React.Component {
     handleSubmit = data => {
         //this.setState({ input_text: text });
         console.log("input_text:" +text );
-        EventMediatorModule.show('Awesome', ToastExample.SHORT);
+
     };
 
     render() {
