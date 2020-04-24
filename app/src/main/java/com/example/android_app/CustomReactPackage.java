@@ -2,13 +2,12 @@ package com.example.android_app;
 
 import android.app.Activity;
 
-import androidx.annotation.NonNull;
-
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
+import com.reactlibrary.EventMediatorModuleModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +25,7 @@ public class CustomReactPackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
         // Add native modules here
         //modules.add(new CustomReactModule(reactContext, mActivity));
+        modules.add(new EventMediatorModuleModule(reactContext));
         return modules;
     }
 
