@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/modules/react-native-event-mediator-module/android" />
+            <option value="$PROJECT_DIR$/react-native_modules/react-native-rn-event-mediator/android" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

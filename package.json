@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "16.11.0",
     "react-native": "^0.62.2",
-    "react-native-event-mediator-module": "^0.10.0"
+    "react-native-rn-event-mediator": "^0.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

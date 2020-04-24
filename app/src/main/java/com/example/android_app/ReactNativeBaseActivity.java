@@ -17,7 +17,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.reactlibrary.EventMediatorModulePackage;
+import com.reactlibrary.RnEventMediatorPackage;
 
 //import net.mischneider.MSREventBridgeEventReceiver;
 //import net.mischneider.MSREventBridgeReceiverCallback;
@@ -80,7 +80,8 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
                 .setJSBundleFile("index.android")
                 .addPackage(new MainReactPackage())
 //                .addPackage(new CustomReactPackage(this))
-                .addPackage(new EventMediatorModulePackage(this))
+//                .addPackage(new EventMediatorModulePackage(this))
+                .addPackage(new RnEventMediatorPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();

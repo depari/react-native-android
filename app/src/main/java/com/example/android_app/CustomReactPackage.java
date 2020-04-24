@@ -7,7 +7,8 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
-import com.reactlibrary.EventMediatorModuleModule;
+import com.reactlibrary.RnEventMediatorModule;
+//import com.reactlibrary.EventMediatorModuleModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class CustomReactPackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
         // Add native modules here
         //modules.add(new CustomReactModule(reactContext, mActivity));
-        modules.add(new EventMediatorModuleModule(reactContext));
+        modules.add(new RnEventMediatorModule(reactContext));
         return modules;
     }
 

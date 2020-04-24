@@ -5,7 +5,8 @@ import { NativeEventEmitter, NativeModules } from 'react-native';
 
 import { TouchableOpacity, Alert, TextInput } from 'react-native';
 
-import EventMediatorModule from './EventMediatorModule';
+//import EventMediatorModule from './EventMediatorModule';
+import RnEventMediator from './RnEventMediator'
 
 
 
@@ -88,7 +89,7 @@ class Input extends React.Component {
     submitText = text => {
             //this.setState({ input_text: text });
             console.log("submitText:" +text );
-            EventMediatorModule.show(text);
+            RnEventMediator.toast(text);
         };
 
 
