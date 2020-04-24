@@ -11,6 +11,12 @@ import { TouchableOpacity, Alert, TextInput } from 'react-native';
 
 //import CustomReactNativeModule from './CustomReactNativeModule';
 
+//import EventMediatorModule from './EventMediatorModule';
+
+import EventMediatorModule from './EventMediatorModule';
+
+//ToastExample.show('Awesome', ToastExample.SHORT);
+
 
 class HelloWorld extends React.Component {
     constructor(props) {
@@ -129,6 +135,7 @@ class InputForm extends React.Component {
     handleSubmit = data => {
         //this.setState({ input_text: text });
         console.log("input_text:" +text );
+        EventMediatorModule.show('Awesome', ToastExample.SHORT);
     };
 
     render() {
