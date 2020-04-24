@@ -41,30 +41,9 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
 
         setContentView(R.layout.react_layour);
         mReactRootView = new ReactRootView(this);
-
-        //mReactRootView.setAppProperties(new Bundle('parameter', parameter_value.toString()));
-        mReactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(getApplication())
-                .setCurrentActivity(this)
-                .setBundleAssetName("index.android.bundle")
-                .setJSMainModulePath("")
-                .setJSBundleFile("index.android")
-                .addPackage(new MainReactPackage())
-                .addPackage(new CustomReactPackage(this))
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
-
-
-        //mReactInstanceManager.createReactContextInBackground();
-
-
-//        task = new BackgroundTask(m_parameter_value);
-//        task.execute()
-        //_context = mReactInstanceManager.getCurrentReactContext();
+        buildReactNative();
         mReactContext = mReactInstanceManager.getCurrentReactContext();
-        //mReactContext = mReactInstanceManager.getCurrentReactContext();
-        //tirggerEvent(mReactContext);
+
 
         new Handler().postDelayed(new Runnable() {// 1 초 후에 실행
             @Override
@@ -84,6 +63,23 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
         ll= (LinearLayout) findViewById(R.id.ll_react);
         ll.addView(mReactRootView);
 
+    }
+
+    private void buildReactNative() {
+        mReactInstanceManager = ReactInstanceManager.builder()
+                .setApplication(getApplication())
+                .setCurrentActivity(this)
+                .setBundleAssetName("index.android.bundle")
+                .setJSMainModulePath("")
+                .setJSBundleFile("index.android")
+                .addPackage(new MainReactPackage())
+                .addPackage(new CustomReactPackage(this))
+                .setUseDeveloperSupport(BuildConfig.DEBUG)
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
+
+
+        mReactInstanceManager.createReactContextInBackground();
     }
     @Override
     public void invokeDefaultOnBackPressed() {
