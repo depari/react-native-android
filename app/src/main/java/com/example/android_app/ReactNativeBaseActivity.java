@@ -19,9 +19,6 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactlibrary.RnEventMediatorPackage;
 
-//import net.mischneider.MSREventBridgeEventReceiver;
-//import net.mischneider.MSREventBridgeReceiverCallback;
-
 
 public class ReactNativeBaseActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, ReactInstanceManager.ReactInstanceEventListener  {
     String TAG = "SSEO";
@@ -30,10 +27,7 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
     private ReactContext mReactContext;
     private ReactInstanceManager mReactInstanceManager;
     private LinearLayout ll;
-    BackgroundTask task;
     String m_parameter_value;
-
-    //ThreadLocal<Handler> mhandler;// = new ThreadLocal<Handler>();
 
 
 
@@ -56,8 +50,6 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
             public void run() {
                 // 실행할 동작 코딩
                 Log.d(TAG, "run: !!");
-
-                //this.getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
                 mReactContext = mReactInstanceManager.getCurrentReactContext();
                 tirggerEvent(mReactContext);
             }
@@ -79,8 +71,6 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
                 .setJSMainModulePath("")
                 .setJSBundleFile("index.android")
                 .addPackage(new MainReactPackage())
-//                .addPackage(new CustomReactPackage(this))
-//                .addPackage(new EventMediatorModulePackage(this))
                 .addPackage(new RnEventMediatorPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
@@ -160,65 +150,6 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
                 .emit("customEvent", m_parameter_value);
 
     }
-
-
-
-
-    class BackgroundTask extends AsyncTask<Void, Integer, Boolean> {
-        String m_stringValue;
-
-        //TextView textView;
-
-//        public MyAsyncTask(TextView textView)
-//        {
-//            this.textView = textView;
-//        }
-
-        public BackgroundTask(String value)
-        {
-            this.m_stringValue = value;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... strings){
-
-            for(int i=0; i< 10000; i++)
-            {
-                try {
-                    Thread.sleep(100);
-                }catch (InterruptedException ex) {}
-                publishProgress(i);
-            }
-
-            return true;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Boolean s) {
-            super.onPostExecute(s);
-
-
-
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            //textView.setText(values[0].toString());
-
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onCancelled(Boolean s) {
-            super.onCancelled(s);
-        }
-    }
-
 
 
 }
