@@ -1,5 +1,6 @@
 package com.example.android_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -62,8 +64,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onPostResume() {
+
+        Log.d(TAG, "onPostResume: !!!!!");
+        super.onPostResume();
+        String data = SharedData.getInstance().getData();
+        SharedData.getInstance().setData("");
+        TextView hellText = findViewById(R.id.id_text_hello);
+        if(data != null)
+            hellText.append(data);
     }
 
 

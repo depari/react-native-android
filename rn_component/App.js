@@ -102,8 +102,16 @@ class Input extends React.Component {
             //this.setState({ input_text: text });
             console.log("submitText:" +text );
             RnEventMediator.toast(text);
-            text = "event_text:"+text;
-            RnEventMediator.sendEvent(text, text);
+            if(text.startsWith("!!"))
+            {
+                RnEventMediator.sendEvent(RnEventMediator.UPDATE_DATA, text, text);
+            } else
+            {
+                text = "event_text:"+text;
+                RnEventMediator.sendEvent(RnEventMediator.NORMAL, text, text);
+            }
+
+
         };
 
 

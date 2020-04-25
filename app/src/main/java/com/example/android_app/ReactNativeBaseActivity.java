@@ -18,6 +18,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactlibrary.RnEventHandler;
+import com.reactlibrary.RnEventMediatorModule;
 import com.reactlibrary.RnEventMediatorPackage;
 
 
@@ -159,7 +160,12 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
 
 
     @Override
-    public void eventCallBack(String eventKey, String eventData) {
+    public void eventCallBack(int eventType, String eventKey, String eventData) {
         Log.d(TAG, "eventCallBack: key  " + eventKey + ", value: " + eventData);
+        if(eventType == RnEventMediatorModule.EVENT_UPDATEDATA)
+        {
+            SharedData.getInstance().setData(eventData);
+        }
+
     }
 }
