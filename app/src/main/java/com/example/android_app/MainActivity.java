@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.soloader.SoLoader;
 import com.google.android.material.textfield.TextInputEditText;
+import com.reactlibrary.RnEventHandler;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "SSEO";
@@ -64,5 +65,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
     }
+
 
 }

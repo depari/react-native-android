@@ -11,9 +11,15 @@ import com.facebook.react.uimanager.ViewManager;
 import com.facebook.react.bridge.JavaScriptModule;
 
 public class RnEventMediatorPackage implements ReactPackage {
+    RnEventHandler mHandler;
+    public RnEventMediatorPackage(RnEventHandler handler) {
+        mHandler = handler;
+
+    }
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new RnEventMediatorModule(reactContext));
+        return Arrays.<NativeModule>asList(new RnEventMediatorModule(reactContext, mHandler));
     }
 
     @Override

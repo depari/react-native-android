@@ -17,10 +17,11 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.reactlibrary.RnEventHandler;
 import com.reactlibrary.RnEventMediatorPackage;
 
 
-public class ReactNativeBaseActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, ReactInstanceManager.ReactInstanceEventListener  {
+public class ReactNativeBaseActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, ReactInstanceManager.ReactInstanceEventListener , RnEventHandler {
     private static final String TAG = "SSEO";
 
     private ReactRootView mReactRootView;
@@ -76,7 +77,7 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
                 .setJSMainModulePath("")
                 .setJSBundleFile("index.android")
                 .addPackage(new MainReactPackage())
-                .addPackage(new RnEventMediatorPackage())
+                .addPackage(new RnEventMediatorPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
@@ -157,4 +158,8 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
     }
 
 
+    @Override
+    public void eventCallBack(String eventKey, String eventData) {
+        Log.d(TAG, "eventCallBack: key  " + eventKey + ", value: " + eventData);
+    }
 }
