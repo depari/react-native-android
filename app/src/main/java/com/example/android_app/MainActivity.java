@@ -14,9 +14,12 @@ import com.facebook.soloader.SoLoader;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "SSEO";
 
     Button btn_react;
     TextInputEditText textinput;
+    TextInputEditText textinput_title;
+
     //TextInput
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,17 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 textinput = findViewById(R.id.id_input_text);
+                textinput_title = findViewById(R.id.id_input_text_title);
 
                 String text = textinput.getText().toString();
-                Log.d("SSEO", "onClick: "+ text);
+                String text_title = textinput_title.getText().toString();
+                Log.d(TAG, "onClick - Title: "+ text_title +" Event:" + text);
 
 
                 Intent _intent = new Intent(MainActivity.this,ReactNativeBaseActivity.class);
                 _intent.putExtra("parameter", text.toString());
+                _intent.putExtra("parameter_title", text_title.toString());
+
                 startActivity(_intent);
             }
         });

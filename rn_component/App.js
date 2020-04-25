@@ -14,8 +14,12 @@ import RnEventMediator from './RnEventMediator'
 class App extends React.Component {
     constructor(props) {
         super(props);
+        console.log("passed props:" +props);
+        console.log("passed props:" +props.title);
+
         this.state = {
             displayText: "none",
+            titleText : props.title,
             inputText:"nothing"
             };
         // this.updateText = this.updateText().bind(this);
@@ -36,6 +40,7 @@ class App extends React.Component {
     return (
 
       <View style={styles.container}>
+        <Text style={styles.title_text}>{this.state.titleText}</Text>
         <Text style={styles.hello}>Hello, World!! First App </Text>
         <Text style={styles.event_text}> {this.state.displayText}</Text>
         <Input/>
@@ -54,10 +59,17 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  title_text : {
+        fontSize: 30,
+        textAlign: 'center',
+        margin: 10,
+        color : 'green'
+},
   event_text : {
       fontSize: 20,
       textAlign: 'left',
       margin: 10,
+      color : 'blue'
   },
   input: {
         margin: 15,

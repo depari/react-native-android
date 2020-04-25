@@ -21,7 +21,7 @@ import com.reactlibrary.RnEventMediatorPackage;
 
 
 public class ReactNativeBaseActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, ReactInstanceManager.ReactInstanceEventListener  {
-    String TAG = "SSEO";
+    private static final String TAG = "SSEO";
 
     private ReactRootView mReactRootView;
     private ReactContext mReactContext;
@@ -35,7 +35,10 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         m_parameter_value = getIntent().getStringExtra("parameter");
-        Log.d("SSEO", "onCreate: passed parameter : " + m_parameter_value.toString() );
+        String text_title = getIntent().getStringExtra("parameter_title");
+        Bundle props = new Bundle();
+        props.putString("title", text_title);
+        Log.d(TAG, "onCreate: passed parameter : " + m_parameter_value.toString() );
 
         SoLoader.init(this, /* native exopackage */ false);
 
@@ -56,8 +59,10 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
         }, 5000);
 
 
+
+
         //The name reactdemo should be the same as package.json and the project name in index.android.js in react-native, otherwise errors will occur.
-        mReactRootView.startReactApplication(mReactInstanceManager, "react_native_app", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "react_native_app", props);
         ll= (LinearLayout) findViewById(R.id.ll_react);
         ll.addView(mReactRootView);
 
@@ -136,12 +141,12 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
     }
 
     public void tirggerEvent(ReactContext _context) {
-        Log.d("SSEO", "tirggerEvent: " + m_parameter_value);
+        Log.d(TAG, "tirggerEvent: " + m_parameter_value);
 
 
         if(_context == null)
         {
-            Log.e("SSEO", "context is null : " + m_parameter_value);
+            Log.e(TAG, "context is null : " + m_parameter_value);
             _context = mReactInstanceManager.getCurrentReactContext();
 
             return;
