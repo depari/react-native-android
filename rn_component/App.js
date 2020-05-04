@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRegistry, StyleSheet, Text, View} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 import { DeviceEventEmitter } from 'react-native';
 import { NativeEventEmitter, NativeModules } from 'react-native';
 
@@ -12,38 +12,36 @@ import RnEventMediator from './RnEventMediator'
 
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log("passed props:" +props);
-        console.log("passed props:" +props.title);
+  constructor(props) {
+    super(props);
+    console.log("passed props:" + props.title);
+    console.log("passed props.body:" + props.body);
+    this.state = {
+      displayText: "none",
+      titleText: props.title
+    };
+    // this.updateText = this.updateText().bind(this);
+    DeviceEventEmitter.addListener('customEvent', this.updateTest);
+  }
+  updateTest = (event) => {
 
-        this.state = {
-            displayText: "none",
-            titleText : props.title,
-            inputText:"nothing"
-            };
-        // this.updateText = this.updateText().bind(this);
-         DeviceEventEmitter.addListener('customEvent', this.updateTest);
-    }
-    updateTest = (event) => {
-
-      //alert("event");
-      var text = "Event Triggered: [" + event + "]";
-      this.setState(
-          {displayText: text}
-      );
-    }
+    //alert("event");
+    var text = "Event Triggered: [" + event + "]";
+    this.setState(
+      { displayText: text }
+    );
+  }
 
   render() {
-//    const [value, onChangeText] = React.useState('Useless Placeholder');
-//const [text, setText] = useState('');
+    //    const [value, onChangeText] = React.useState('Useless Placeholder');
+    //const [text, setText] = useState('');
     return (
 
       <View style={styles.container}>
         <Text style={styles.title_text}>{this.state.titleText}</Text>
         <Text style={styles.hello}>Hello, World!! First App </Text>
         <Text style={styles.event_text}> {this.state.displayText}</Text>
-        <Input/>
+        <Input inputText={this.props.body} />
       </View>
 
     );
@@ -59,110 +57,109 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  title_text : {
-        fontSize: 30,
-        textAlign: 'center',
-        margin: 10,
-        color : 'green'
-},
-  event_text : {
-      fontSize: 20,
-      textAlign: 'left',
-      margin: 10,
-      color : 'blue'
+  title_text: {
+    fontSize: 30,
+    textAlign: 'center',
+    margin: 10,
+    color: 'green'
+  },
+  event_text: {
+    fontSize: 20,
+    textAlign: 'left',
+    margin: 10,
+    color: 'blue'
   },
   input: {
-        margin: 15,
-        height: 40,
-        borderColor: '#7a42f4',
-        borderWidth: 1
-     },
-     submitButton: {
-        backgroundColor: '#7a42f4',
-        padding: 10,
-        margin: 15,
-        height: 40,
-     },
-     submitButtonText:{
-        color: 'white'
-     }
+    margin: 15,
+    height: 40,
+    borderColor: '#7a42f4',
+    borderWidth: 1
+  },
+  submitButton: {
+    backgroundColor: '#7a42f4',
+    padding: 10,
+    margin: 15,
+    height: 40,
+  },
+  submitButtonText: {
+    color: 'white'
+  }
 });
 
 class Input extends React.Component {
-    state = {
-        input_text : "none"
-    };
+  state = {
+    input_text: "none"
+  };
 
-    handleText = text => {
-        this.setState({ input_text: text });
-        console.log("input_text:" +text );
-    };
+  handleText = text => {
+    this.setState({ input_text: text });
+    console.log("input_text:" + text);
+  };
 
-    submitText = text => {
-            //this.setState({ input_text: text });
-            console.log("submitText:" +text );
-            RnEventMediator.toast(text);
-            if(text.startsWith("!!"))
-            {
-                RnEventMediator.sendEvent(RnEventMediator.UPDATE_DATA, text, text);
-            } else
-            {
-                text = "event_text:"+text;
-                RnEventMediator.sendEvent(RnEventMediator.NORMAL, text, text);
-            }
+  submitText = text => {
+    //this.setState({ input_text: text });
+    console.log("submitText:" + text);
+    RnEventMediator.toast(text);
+    if (text.startsWith("!!")) {
+      RnEventMediator.sendEvent(RnEventMediator.UPDATE_DATA, text, text);
+    } else {
+      text = "event_text:" + text;
+      RnEventMediator.sendEvent(RnEventMediator.NORMAL, text, text);
+    }
 
 
-        };
+  };
 
 
 
-    render() {
-        return (
-          <View style={styles.container}>
-            <TextInput
-              style={styles.input}
-              underlineColorAndroid="transparent"
-              placeholder="Type Event String to Android"
-              placeholderTextColor="#9a73ef"
-              autoCapitalize="none"
-              onChangeText={this.handleText}
-            />
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          underlineColorAndroid="transparent"
+          placeholder="Type Event String to Android"
+          placeholderTextColor="#9a73ef"
+          autoCapitalize="none"
+          onChangeText={this.handleText}
+          value={this.props.inputText}
+        />
 
-         <TouchableOpacity
-           style = {styles.submitButton}
-           onPress = {
-              () => this.submitText(this.state.input_text)
-           }>
-           <Text style = {styles.submitButtonText}> Submit </Text>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={
+            () => this.submitText(this.state.input_text)
+          }>
+          <Text style={styles.submitButtonText}> Submit </Text>
         </TouchableOpacity>
 
-          </View>
-        );
-      }
+      </View>
+    );
+  }
 }
 
 class InputForm extends React.Component {
-   state = {
-        input_text : "none"
+  state = {
+    inputText: "none"
 
-    };
-    //onSubmit = data => console.log(data)
+  };
+  //onSubmit = data => console.log(data)
 
-    handleSubmit = data => {
-        //this.setState({ input_text: text });
-        console.log("input_text:" +text );
+  handleSubmit = data => {
+    //this.setState({ input_text: text });
+    console.log("inputText:" + text);
 
-    };
+  };
 
-    render() {
-        return (
-          <form onSubmit={this.handleSubmit()}>
-                <input name="Type String" ref={this.state.input_text} />
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit()}>
+        <input name="Type String" ref={this.state.inputText} />
 
-                <input type="submit" />
-              </form>
-        );
-      }
+        <input type="submit" />
+      </form>
+    );
+  }
 }
 
 export default App;
