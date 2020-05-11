@@ -40,6 +40,7 @@ public class ReactNativeBaseActivity extends AppCompatActivity implements Defaul
         String text_title = getIntent().getStringExtra("parameter_title");
         Bundle props = new Bundle();
         props.putString("title", text_title);
+        props.putString("body", m_parameter_value.toString());
         Log.d(TAG, "onCreate: passed parameter : " + m_parameter_value.toString() );
 
         SoLoader.init(this, /* native exopackage */ false);
