@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B3E7B58A1CC2AC0600A0062D /* RnEventMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RnEventMediator.m */; };
+		EEB34C765F1240D7BDC9EAA7 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE8AB2FD10A4D48BBA54C72 /* libRNVectorIcons.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,8 @@
 		134814201AA4EA6300B7C361 /* libRnEventMediator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRnEventMediator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3E7B5881CC2AC0600A0062D /* RnEventMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RnEventMediator.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RnEventMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RnEventMediator.m; sourceTree = "<group>"; };
+		6C4D4E68B63B44D591D2DE64 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../../../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		AEE8AB2FD10A4D48BBA54C72 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEB34C765F1240D7BDC9EAA7 /* libRNVectorIcons.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +57,18 @@
 				B3E7B5881CC2AC0600A0062D /* RnEventMediator.h */,
 				B3E7B5891CC2AC0600A0062D /* RnEventMediator.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				71927F3B87D04A41B41967AD /* Libraries */,
 			);
 			sourceTree = "<group>";
+		};
+		71927F3B87D04A41B41967AD /* Libraries */ = {
+			isa = "PBXGroup";
+			children = (
+				6C4D4E68B63B44D591D2DE64 /* RNVectorIcons.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -82,7 +96,7 @@
 		58B511D31A9E6C8500147676 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 920;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
@@ -216,12 +230,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RnEventMediator\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RnEventMediator;
 				SKIP_INSTALL = YES;
@@ -237,7 +254,10 @@
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RnEventMediator\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RnEventMediator;
 				SKIP_INSTALL = YES;
