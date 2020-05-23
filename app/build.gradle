@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply from: "../node_modules/react-native-vector-icons/fonts.gradle"
+
 
 project.ext.react = [
         entryFile: "index.android.js",
@@ -27,6 +29,9 @@ android {
             flavorAware: false,
             //add
             enableHermes: false
+    ]
+    project.ext.vectoricons = [
+            iconFontNames: [ 'MaterialIcons.ttf', 'Entypo.ttf' ] // Name of the font files you want to copy
     ]
 
 
