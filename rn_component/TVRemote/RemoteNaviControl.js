@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import {RemoteButton} from './RemoteButton';
+import GestureController from './GestureController';
 
 const style = StyleSheet.create({
     Container : {
@@ -44,6 +45,7 @@ class RemoteNaviControl extends React.Component {
                     <RemoteButton keyname='NAV_UP' />
                 </View>
                 <View style={style.nav_touch}>
+                    <GestureController />
                 </View>
                 <View style={style.Container_normal_icon}>
                     <RemoteButton keyname='NAV_DOWN' />

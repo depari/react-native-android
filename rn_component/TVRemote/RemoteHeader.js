@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, BackHadnler } from 'react-native';
+import { StyleSheet, View, Text,  BackHandler } from 'react-native';
 import RnEventMediator from '../RnEventMediator'
 
 import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -26,17 +26,15 @@ const style = StyleSheet.create({
 class RemoteHeader extends React.Component {
     constructor(props) {
         super(props);
-        this.goBack = this.goBack.bind(this);
-    }
-    goBack() {
-        this.props.navigation.goBack(null);
+
     }
     render () {
 
         return(
             <View style={style.Container}>
                 <IconFontAwesome5.Button name="chevron-left" size={30} color="#111" style={style.IconButton} iconStyle={style.Icon}
-                    onPress={ () => console.log("back!!!") }
+                    onPress={ () =>  BackHandler.exitApp()}
+
                  />
             </View>
         );
